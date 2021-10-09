@@ -1,0 +1,59 @@
+<div class="container">
+  <form (ngSubmit)="onSubmit()" #incidentForm="ngForm">
+    <mat-form-field appearance="fill">
+      <mat-label>Id</mat-label>
+      <input matInput [(ngModel)]="incident.id"
+          id="id" 
+          name="id" 
+          placeholder="Enter incident Id"
+          required #id="ngModel">
+      <mat-error *ngIf="id.invalid">Id required</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Incident Title</mat-label>
+      <input matInput [(ngModel)]="incident.title"
+          id="title" 
+          name="title" 
+          placeholder="Enter incident title"
+          required #title="ngModel">
+      <mat-error *ngIf="title.invalid">Title required</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Application</mat-label>
+      <mat-select [(ngModel)]="incident.application" required 
+          id="app" 
+          name="app" 
+          #app="ngModel">
+        <mat-option value="neolink">Neolink</mat-option>
+        <mat-option value="mistral">Mistral</mat-option>
+        <mat-option value="tornado">Tornado</mat-option>
+        <mat-option value="acetp">AceTP</mat-option>
+      </mat-select>
+      <mat-error *ngIf="app.invalid">Please choose an application</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Priority</mat-label>
+      <mat-select [(ngModel)]="incident.priority" required 
+          id="priority" 
+          name="priority" 
+          #priority="ngModel">
+        <mat-option value="p1">Critical</mat-option>
+        <mat-option value="p2">Hight</mat-option>
+        <mat-option value="p3">Normal</mat-option>
+        <mat-option value="p4">Low</mat-option>
+      </mat-select>
+      <mat-error *ngIf="priority.invalid">Priority required</mat-error>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Textarea</mat-label>
+      <textarea matInput name="description" [(ngModel)]="incident.description"></textarea>
+    </mat-form-field>
+    <br>
+    <button mat-raised-button type="submit" [disabled]="!incidentForm.form.valid" 
+        class="btn btn-info">Submit</button>
+  </form>
+</div>
